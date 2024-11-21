@@ -32,14 +32,16 @@ def write_destination(destination):
         json.dump(destination, file, indent=4)
 
 
-# ---------------------------------  get destination----------------------
+#  get destination
+
 @app.route("/destination",methods=["GET"])
 def get_destination():
     destination=read_destination();
     return destination
 
 
-#----------------------------------------- /delete-user route----------------------------------
+#  delete-user route
+
 @app.route('/destination/<id>', methods=['DELETE'])
 def delete_destination(id):
 
@@ -51,7 +53,6 @@ def delete_destination(id):
     destination_to_delete = None;
     for destination in destinations:
         if (destination['Id'] == int(id)):
-            print("ok")
             destination_to_delete = destination
             break
 

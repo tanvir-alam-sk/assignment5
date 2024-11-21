@@ -32,7 +32,9 @@ def write_users(users):
         json.dump(users, file, indent=4)
 
 
-#----------------------------------------- /register route----------------------------------
+#  register route
+
+
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -68,7 +70,9 @@ def register():
     return jsonify({"message": "User registered successfully"}), 201
 
 
-# login route
+#  login route
+
+
 @app.route("/login",methods=["POST"])
 def get_user():
     data = request.get_json()
@@ -91,6 +95,25 @@ def get_user():
             return jsonify({"message": "User logined successfully"}), 201
         else:
             return jsonify({"message": "Email or Password is not currect"}), 400
+
+
+#   get login user
+
+# GET /profile: View user-specific profile information
+@app.route('/profile', methods=['GET'])
+def profile():
+    users = read_users()
+
+    for user in users:
+        if user['email'] == email:
+            return jsonify({
+                "name": user['name'],
+                "email": user['email'],
+                "password": user['password'],  # Hashed password
+                "role": user['role']
+            }), 200
+
+    return jsonify({"error": "User not found"}), 404
 
 
 if __name__== "__main__":
