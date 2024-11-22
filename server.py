@@ -3,8 +3,18 @@ from flask import jsonify;
 from flask import request;
 import os
 import json
+from utility.jwt import verify_token
+from db.token import jwt_token
 
 app=Flask(__name__);
+
+
+user_file_path = os.path.join("db", "users.py")
+# Function to read users from file
+def read_users():
+    with open(user_file_path, "r") as file:
+        return json.load(file)
+    
 
 @app.route("/",methods=["GET"])
 def home():
@@ -40,10 +50,72 @@ def get_destination():
     return destination
 
 
+# add distination
+@app.route('/destination', methods=['POST'])
+def add_destination():
+
+    logined_user_email=verify_token(jwt_token)
+    print(logined_user_email)
+    users = read_users()
+    find_user=-1
+
+    for user in users:
+        if((user['email'] == logined_user_email)):
+            # find_user=0
+            if(user['role'] == "admin"):
+                find_user=1
+            else:
+                return jsonify({"error": "Forbidden Access"}), 403
+        
+    if(find_user==-1):
+        return jsonify({"message": "Unauthorized Access"}), 401
+
+    # Read existing users
+    destinations = read_destination();
+
+    data = request.get_json()
+
+
+    # Validate input
+    Id = data.get('Id')
+    Location = data.get('Name')
+    Description=data.get('Description')
+    Location = data.get('Location')
+    
+    if not Id or not Location or not Description or not Location:
+        return jsonify({"error": "Id, Location, Description and Location are required"}), 400
+    
+    for destination in destinations:
+        if(destination['Id'] == Id):
+            return jsonify({"error": "Id already taken please provide unique id"}), 400
+
+    # Add the new user
+    destinations.append({"Id": Id,"Location":Location, "Description": Description,"Location":Location})
+    write_destination(destinations)
+
+    return jsonify({"message": "Destination Add successfully"}), 201
+
+
+
 #  delete-user route
 
 @app.route('/destination/<id>', methods=['DELETE'])
 def delete_destination(id):
+
+    logined_user_email=verify_token(jwt_token)
+    users = read_users()
+    find_user=-1
+
+    for user in users:
+        if((user['email'] == logined_user_email)):
+            # find_user=0
+            if(user['role'] == "admin"):
+                find_user=1
+            else:
+                return jsonify({"error": "Forbidden Access"}), 403
+        
+    if(find_user==-1):
+        return jsonify({"message": "Unauthorized Access"}), 401
 
     # Read existing users
     destinations = read_destination();
@@ -74,4 +146,4 @@ def delete_destination(id):
 
 
 if __name__== "__main__":
-    app.run(debug=True,port=5000)
+    app.run(debug=True,port=5002)

@@ -1,5 +1,11 @@
 [
     {
+        "Id": 99995,
+        "Name": "Paris",
+        "Description": "The city of love, known for the Eiffel Tower, the Louvre Museum, and its romantic ambiance.",
+        "Location": "France"
+    },
+    {
         "Id": 99996,
         "Name": "Kyoto",
         "Description": "A city in Japan famous for its classical Buddhist temples, gardens, imperial palaces, and traditional wooden houses.",
@@ -28,15 +34,5 @@
         "Name": "Santorini",
         "Description": "A Greek island famous for its whitewashed buildings, blue-domed churches, and breathtaking sunsets.",
         "Location": "Greece"
-    },
-    {
-        "Id": 99995,
-        "Location": "USA",
-        "Description": "A massive natural wonder in the USA, renowned for its stunning landscapes, hiking trails, and geological formations."
-    },
-    {
-        "Id": 99994,
-        "Location": "USA",
-        "Description": "A massive natural wonder in the USA, renowned for its stunning landscapes, hiking trails, and geological formations."
     }
 ]
