@@ -30,9 +30,9 @@
         "Location": "Maldives"
     },
     {
-        "Id": 100000, 
-        "Name": "Santorini", 
-        "Description": "A Greek island famous for its whitewashed buildings, blue-domed churches, and breathtaking sunsets.", 
+        "Id": 100000,
+        "Name": "Santorini",
+        "Description": "A Greek island famous for its whitewashed buildings, blue-domed churches, and breathtaking sunsets.",
         "Location": "Greece"
     }
 ]

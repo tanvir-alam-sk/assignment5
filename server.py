@@ -49,7 +49,7 @@ def delete_destination(id):
     destinations = read_destination();
     
 
-    # Find the user to delete by email or username
+    # Find the destination to delete by id
     destination_to_delete = None;
     for destination in destinations:
         if (destination['Id'] == int(id)):
@@ -57,14 +57,14 @@ def delete_destination(id):
             break
 
 
-    # If user is not found, return an error
+    # If destination is not found, return an error
     if not destination_to_delete:
         return jsonify({"error": "Destination not found"}), 404
 
-    # Remove the user from the list
+    # Remove the destination from the list
     destinations.remove(destination_to_delete)
     
-    # Write the updated list of users to the file
+    # Write the updated list of destination to the file
     write_destination(destinations)
 
     return jsonify({"message": "Destination deleted successfully"}), 200
