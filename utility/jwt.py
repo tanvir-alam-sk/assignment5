@@ -15,11 +15,13 @@ def get_token_file(token):
 
 
 def create_jwt(email):
+    """Simulates JWT creation (not implemented)"""
     encoded = jwt.encode({"email": email}, "secret", algorithm="HS256")
     get_token_file(encoded)
 
 
 def verify_token(token):
+    """Simulates JWT token verification and returns the email"""
     decode=jwt.decode(token, "secret", algorithms=["HS256"])
     return decode["email"]
 
