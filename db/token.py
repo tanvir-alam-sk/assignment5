@@ -1,1 +1,1 @@
-jwt_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmVAZG9lLmNvbSJ9.CTFCvLL6XANsT2o3mWeyzb08boAlMKCGnKb2efy8zhI"
+jwt_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIn0.KCxI3hD2u8QlZ76J_T_OqOUwWmIetfKJfmwRDBiBFVQ"
